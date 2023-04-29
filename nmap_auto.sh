@@ -44,7 +44,7 @@ if [ "$quick_scan" = true ]; then
 fi
 
 echo ""
-echo -e "${GREEN}---------------------Running Full Port Scan on $ip_address-----------------------"
+echo -e "${GREEN}---------------------Performing Full Port Scan on $ip_address-----------------------"
 echo -e "${NC}"
 
 nmap -Pn -T3 -p- -oN nmap_initial.nmap $ip_address > /dev/null 2>&1
