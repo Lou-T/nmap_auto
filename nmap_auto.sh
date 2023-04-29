@@ -43,6 +43,12 @@ if [ "$quick_scan" = true ]; then
     nmap -Pn -T3 $ip_address
 fi
 
+function cleanup {
+    rm -r -f $ip_address nmap_initial.nmap input.txt 
+}
+
+trap 'cleanup > /dev/null 2>&1' EXIT
+
 echo ""
 echo -e "${GREEN}------------------------Performing Full Port Scan-------------------------------"
 echo -e "${NC}"
