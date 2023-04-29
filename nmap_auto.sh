@@ -37,14 +37,14 @@ fi
 
 if [ "$quick_scan" = true ]; then
     echo ""
-    echo -e "${GREEN}---------------------Performing Quick Port Scan on $ip_address----------------------"
+    echo -e "${GREEN}------------------------Performing Quick Port Scan------------------------------"
     echo -e "${NC}"
 
     nmap -Pn -T3 $ip_address
 fi
 
 echo ""
-echo -e "${GREEN}---------------------Performing Full Port Scan on $ip_address-----------------------"
+echo -e "${GREEN}------------------------Performing Full Port Scan-------------------------------"
 echo -e "${NC}"
 
 nmap -Pn -T3 -p- -oN nmap_initial.nmap $ip_address > /dev/null 2>&1
@@ -71,7 +71,7 @@ mkdir $ip_address
 
 echo ""
 echo ""
-echo -e "${GREEN}---------------------Enumerating Services on Open Ports---------------------------"
+echo -e "${GREEN}------------------------Enumerating Services on Open Ports----------------------"
 echo -e "${NC}"
 
 nmap -Pn -sV -O -p $ports -T3 -oA $ip_address/enumeration_results $ip_address > /dev/null
@@ -82,7 +82,7 @@ echo -e "${YELLOW}Results of enumeration scan have been stored in nmap_auto/$ip_
 echo -e "${NC}"
 
 if [ "$udp_scan" = true ]; then
-    echo -e "${GREEN}---------------------Performing UDP Scan on $ip_address--------------------------"
+    echo -e "${GREEN}------------------------Performing UDP Scan on $ip_address----------------------"
     echo -e "${NC}"
 
     nmap -sU -T3 $ip_address -oN $ip_address/UDP_results
@@ -93,7 +93,4 @@ if [ "$udp_scan" = true ]; then
 
 fi
 
-echo -e "${RED}--------------------------All Scans Completed-------------------------------------"
-
-
-
+echo -e "${RED}------------------------All Scans Completed-------------------------------------" 
