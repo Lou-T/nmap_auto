@@ -44,10 +44,10 @@ if [ "$quick_scan" = true ]; then
 fi
 
 function cleanup {
-    rm -r -f $ip_address nmap_initial.nmap input.txt 
+    rm -f nmap_initial.nmap input.txt 
 }
 
-trap 'cleanup > /dev/null 2>&1' EXIT
+trap cleanup EXIT
 
 echo ""
 echo -e "${GREEN}------------------------Performing Full Port Scan-------------------------------"
