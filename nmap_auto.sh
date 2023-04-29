@@ -37,7 +37,7 @@ fi
 
 if [ "$quick_scan" = true ]; then
     echo ""
-    echo -e "${GREEN}---------------------Running Quick Port Scan on $ip_address----------------------"
+    echo -e "${GREEN}---------------------Performing Quick Port Scan on $ip_address----------------------"
     echo -e "${NC}"
 
     nmap -Pn -T3 $ip_address
