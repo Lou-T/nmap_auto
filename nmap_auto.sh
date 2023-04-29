@@ -5,7 +5,7 @@ YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-if [ -z "$1" ]; then
+if [[ -z "$1" || "$1" == "-q" || "$1" == "-u" ]]; then
     echo ""
     echo "SYNTAX: sudo ./nmap_auto.sh [IP/host] [-q] [-u]"
     echo ""
