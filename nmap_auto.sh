@@ -5,6 +5,17 @@ YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+if [[ "$1" == "-q" && -n "$2" ]] || [[ "$1" == "-u" && -n "$2" ]]; then
+  echo ""
+  echo "ERROR: IP/host must be the first argument"
+  echo ""
+  echo "SYNTAX: sudo ./nmap_auto.sh [IP/host] [-q] [-u]"
+  echo ""
+  echo -e "\t -q    Include Quick Port Scan"
+  echo -e "\t -u    Include UDP Scan"
+  exit 1
+fi
+
 if [[ -z "$1" || "$1" == "-q" || "$1" == "-u" ]]; then
     echo ""
     echo "SYNTAX: sudo ./nmap_auto.sh [IP/host] [-q] [-u]"
