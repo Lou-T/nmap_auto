@@ -99,7 +99,7 @@ echo -e "${YELLOW}Results of enumeration scan have been stored in nmap_auto/$ip_
 echo -e "${NC}"
 
 if [ "$udp_scan" = true ]; then
-    echo -e "${GREEN}------------------------Performing UDP Scan on $ip_address----------------------"
+    echo -e "${GREEN}------------------------Performing UDP Port Scan--------------------------------"
     echo -e "${NC}"
 
     nmap -sU -T3 $ip_address -oN $ip_address/UDP_results
