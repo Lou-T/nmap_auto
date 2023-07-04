@@ -64,7 +64,7 @@ echo ""
 echo -e "${GREEN}------------------------Performing Full Port Scan-------------------------------"
 echo -e "${NC}"
 
-nmap -Pn -T3 -p- -oN nmap_initial.nmap $ip_address > /dev/null 2>&1
+nmap -Pn -T3 -p- --min-rate 100 -oN nmap_initial.nmap $ip_address > /dev/null 2>&1
 
 cat nmap_initial.nmap | grep "^ *[0-9]" | awk -F'/' '{print $1}' | tr '\\\\\\\\\\\\\\\\\\\\\\\\n' ',' | sed 's/,$//' > input.txt
 rm nmap_initial.nmap
