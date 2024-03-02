@@ -64,7 +64,7 @@ echo ""
 echo -e "${GREEN}------------------------Performing Full Port Scan-------------------------------"
 echo -e "${NC}"
 
-nmap -Pn -T3 -p- --min-rate 100 -oN nmap_initial.nmap $ip_address > /dev/null 2>&1
+nmap -Pn -T3 -p- --min-rate 100 -oN nmap_initial.nmap $ip_address # > /dev/null 2>&1
 
 cat nmap_initial.nmap | grep "^ *[0-9]" | awk -F'/' '{print $1}' | tr '\\\\\\\\\\\\\\\\\\\\\\\\n' ',' | sed 's/,$//' > input.txt
 rm nmap_initial.nmap
@@ -84,28 +84,28 @@ if [ -d "$ip_address" ]; then
     rm -r "$ip_address"
 fi
 
-mkdir $ip_address
+mkdir nmap_$ip_address
 
 echo ""
 echo ""
 echo -e "${GREEN}------------------------Enumerating Services on Open Ports----------------------"
 echo -e "${NC}"
 
-nmap -Pn -sV -O -p $ports -T3 -oA $ip_address/enumeration_results $ip_address > /dev/null
-cat "$ip_address/enumeration_results.nmap"
+nmap -Pn -sV -sC -O -p $ports -T3 -oN nmap_$ip_address/enumeration_results $ip_address > /dev/null
+cat "nmap_$ip_address/enumeration_results"
 
 echo ""
-echo -e "${YELLOW}Results of enumeration scan have been stored in nmap_auto/$ip_address"
+echo -e "${YELLOW}Results of enumeration scan have been stored in $ip_address"
 echo -e "${NC}"
 
 if [ "$udp_scan" = true ]; then
     echo -e "${GREEN}------------------------Performing UDP Port Scan--------------------------------"
     echo -e "${NC}"
 
-    nmap -sU -T3 $ip_address -oN $ip_address/UDP_results
+    nmap -sU -T3 $ip_address -oN nmap_$ip_address/UDP_results
     echo ""
 
-    echo -e "${YELLOW}Results of UDP scan have been stored in nmap_auto/$ip_address"
+    echo -e "${YELLOW}Results of UDP scan have been stored in $ip_address"
     echo ""
 
 fi
